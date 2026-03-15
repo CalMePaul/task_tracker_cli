@@ -1,4 +1,5 @@
 import argparse
+import task_manager
 
 
 def build_parser():
@@ -33,13 +34,13 @@ def main():
     args = parser.parse_args()
 
     if args.command == "add":
-        print(f"add: {args.description}")
+        task_manager.add_task(args.description)
     elif args.command == "update":
-        print(f"update {args.task_id}: {args.description}")
+        task_manager.update_task(args.task_id, args.description)
     elif args.command == "delete":
-        print(f"delete {args.task_id}")
+        task_manager.delete_task(args.task_id)
     elif args.command == "mark":
-        print(f"mark {args.task_id} as {args.status}")
+        task_manager.mark_task(args.task_id, args.status)
 
 
 if __name__ == "__main__":
