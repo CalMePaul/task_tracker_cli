@@ -33,14 +33,17 @@ def main():
     parser = build_parser()
     args = parser.parse_args()
 
-    if args.command == "add":
-        task_manager.add_task(args.description)
-    elif args.command == "update":
-        task_manager.update_task(args.task_id, args.description)
-    elif args.command == "delete":
-        task_manager.delete_task(args.task_id)
-    elif args.command == "mark":
-        task_manager.mark_task(args.task_id, args.status)
+    try:
+        if args.command == "add":
+            task_manager.add_task(args.description)
+        elif args.command == "update":
+            task_manager.update_task(args.task_id, args.description)
+        elif args.command == "delete":
+            task_manager.delete_task(args.task_id)
+        elif args.command == "mark":
+            task_manager.mark_task(args.task_id, args.status)
+    except ValueError as error:
+        parser.exit(status=1, message=f"Error: {error}\n")
 
 
 if __name__ == "__main__":
