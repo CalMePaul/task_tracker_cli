@@ -87,3 +87,12 @@ def delete_task(task_id):
         raise ValueError(f"Task with id {task_id} not found.")
 
     _save_tasks_file(tasks_dict)
+
+
+def list_tasks():
+    """List all tasks."""
+    tasks_dict = _load_tasks_file()
+
+    for task in tasks_dict["tasks"]:
+        # Add a newline after each task so every task is shown on its own line.
+        print(f"{task['id']}: {task['description']} ({task["status"]})", end="\n")

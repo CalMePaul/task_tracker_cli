@@ -25,6 +25,8 @@ def build_parser():
         help="New task status",
     )
 
+    list_parser = subparsers.add_parser("list", help="List all tasks")
+
     return parser
 
 
@@ -42,6 +44,8 @@ def main():
             task_manager.delete_task(args.task_id)
         elif args.command == "mark":
             task_manager.mark_task(args.task_id, args.status)
+        elif args.command == "list":
+            task_manager.list_tasks()
     except ValueError as error:
         parser.exit(status=1, message=f"Error: {error}\n")
 
